@@ -33,7 +33,13 @@ const PlatformIconList = ({ platforms }: Props) => {
   return (
     <HStack marginY="1">
       {platforms.map((platform) => (
-        <Tooltip hasArrow placement="top" label={platform.name} fontSize="md">
+        <Tooltip
+          hasArrow
+          placement="top"
+          label={platform.name}
+          fontSize="md"
+          key={platform.id}
+        >
           <span>
             <Icon
               key={platform.id}
