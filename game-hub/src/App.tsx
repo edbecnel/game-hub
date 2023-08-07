@@ -20,9 +20,6 @@ function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   const handleDeletePlatform = () => {
-    // const newGameQuery = { ...gameQuery };
-    // delete newGameQuery.platform; // or whichever key you want
-    // setGameQuery(newGameQuery);
     const { platform, ...newGameQuery } = gameQuery; // newGameQuery gets all but platform
     setGameQuery(newGameQuery as GameQuery);
   };

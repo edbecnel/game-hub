@@ -616,7 +616,7 @@ export default
       "slug": "",
       "platforms": [
         {
-          "id": 171999,
+          "id": 999999,
           "name": "All",
           "slug": null,
           "games_count": 0,
