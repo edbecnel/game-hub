@@ -1,4 +1,3 @@
-import { Genre } from "./useGenres";
 import useData from "./useData";
 import { GameQuery } from "../App";
 
