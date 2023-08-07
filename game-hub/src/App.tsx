@@ -19,6 +19,14 @@ export interface GameQuery {
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
+  const handleDeletePlatform = () => {
+    // const newGameQuery = { ...gameQuery };
+    // delete newGameQuery.platform; // or whichever key you want
+    // setGameQuery(newGameQuery);
+    const { platform, ...newGameQuery } = gameQuery; // newGameQuery gets all but platform
+    setGameQuery(newGameQuery as GameQuery);
+  };
+
   return (
     <Grid
       templateAreas={{
@@ -51,7 +59,9 @@ function App() {
               <PlatformSelector
                 selectedPlatform={gameQuery.platform}
                 onSelectPlatform={(platform) =>
-                  setGameQuery({ ...gameQuery, platform })
+                  platform.id > -1
+                    ? setGameQuery({ ...gameQuery, platform })
+                    : handleDeletePlatform()
                 }
               />
             </Box>

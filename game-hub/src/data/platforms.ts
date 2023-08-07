@@ -1,3 +1,5 @@
+import noImage from '../assets/no-image-placeholder.webp';
+
 export default
 [
     {
@@ -607,5 +609,23 @@ export default
           "year_end": null
         }
       ]
+    },
+    {
+      "id": -1,
+      "name": "All",
+      "slug": "",
+      "platforms": [
+        {
+          "id": 171999,
+          "name": "All",
+          "slug": null,
+          "games_count": 0,
+          "image_background": noImage,
+          "image": null,
+          "year_start": null,
+          "year_end": null
+        }
+      ]
     }
+
   ]
