@@ -25,7 +25,11 @@ const GameGrid = ({ gameQuery }: Props) => {
   if (error) return <Text>{error.message}</Text>;
 
   const fetchedGamesCount =
-    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+    data?.pages.reduce(
+      (total: any, page: { results: string | any[] }) =>
+        total + page.results.length,
+      0
+    ) || 0;
 
   return (
     <InfiniteScroll
@@ -46,15 +50,17 @@ const GameGrid = ({ gameQuery }: Props) => {
               <GameCardSkeleton />
             </GameCardContainer>
           ))}
-        {data?.pages.map((page, index) => (
-          <React.Fragment key={index}>
-            {page.results.map((game: Game) => (
-              <GameCardContainer key={game.id}>
-                <GameCard game={game} />
-              </GameCardContainer>
-            ))}
-          </React.Fragment>
-        ))}
+        {data?.pages.map(
+          (page: { results: Game[] }, index: React.Key | null | undefined) => (
+            <React.Fragment key={index}>
+              {page.results.map((game: Game) => (
+                <GameCardContainer key={game.id}>
+                  <GameCard game={game} />
+                </GameCardContainer>
+              ))}
+            </React.Fragment>
+          )
+        )}
       </SimpleGrid>
     </InfiniteScroll>
   );
