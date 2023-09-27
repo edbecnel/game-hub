@@ -10,8 +10,8 @@ import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
+  genreId?: number;
+  platformId?: number;
   sortOrder: string;
   searchText: string;
 }
@@ -20,7 +20,7 @@ function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   const handleDeletePlatform = () => {
-    const { platform, ...newGameQuery } = gameQuery; // newGameQuery gets all but platform
+    const { platformId: platformId, ...newGameQuery } = gameQuery; // newGameQuery gets all but platform
     setGameQuery(newGameQuery as GameQuery);
   };
 
@@ -43,8 +43,10 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
           <GenreList
-            selectedGenre={gameQuery.genre}
-            onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            selectedGenreId={gameQuery.genreId}
+            onSelectGenre={(genre) =>
+              setGameQuery({ ...gameQuery, genreId: genre.id })
+            }
           />
         </GridItem>
       </Show>
@@ -54,10 +56,10 @@ function App() {
           <Flex marginBottom={5}>
             <Box marginRight={5}>
               <PlatformSelector
-                selectedPlatform={gameQuery.platform}
+                selectedPlatformId={gameQuery.platformId}
                 onSelectPlatform={(platform) =>
                   platform.id > -1
-                    ? setGameQuery({ ...gameQuery, platform })
+                    ? setGameQuery({ ...gameQuery, platformId: platform.id })
                     : handleDeletePlatform()
                 }
               />
